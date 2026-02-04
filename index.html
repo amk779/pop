@@ -6,233 +6,272 @@
   <title>POP Diário – Planejamento e Relatório</title>
   <style>
     :root {
-      --bg: #0f172a;
-      --card: #111827;
-      --accent: #22c55e;
-      --muted: #94a3b8;
+      --bg: #0b0e11;
+      --card: #11151a;
+      --accent: #f97316; /* laranja */
+      --accent-soft: rgba(249, 115, 22, 0.15);
+      --muted: #9ca3af;
       --text: #e5e7eb;
-      --danger: #ef4444;
+      --border: rgba(255,255,255,0.06);
     }
 
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
-      background: linear-gradient(180deg, #020617, #0f172a);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+      background: radial-gradient(circle at top, #111827 0%, #0b0e11 45%);
       color: var(--text);
       padding: 24px;
     }
 
-    h1, h2 {
-      margin: 0 0 12px 0;
-    }
-
     h1 {
-      font-size: 1.8rem;
       text-align: center;
-      letter-spacing: 1px;
+      letter-spacing: 3px;
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-bottom: 8px;
     }
 
     h2 {
-      font-size: 1.1rem;
-      color: var(--accent);
+      color: var(--text);
+      font-size: 0.95rem;
+      letter-spacing: 1.5px;
+      border-left: 3px solid var(--accent);
+      padding-left: 10px;
+      margin-bottom: 14px;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 920px;
       margin: auto;
       display: grid;
-      gap: 20px;
+      gap: 18px;
     }
 
     .card {
-      background: rgba(17, 24, 39, 0.9);
-      border-radius: 16px;
+      background: linear-gradient(180deg, #11151a, #0b0e11);
+      border-radius: 14px;
       padding: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
 
     label {
       display: block;
-      font-size: 0.85rem;
+      margin-top: 12px;
+      font-size: 0.75rem;
       color: var(--muted);
-      margin-top: 10px;
+      letter-spacing: 0.5px;
     }
 
     input, textarea, select {
       width: 100%;
-      margin-top: 4px;
+      margin-top: 6px;
       padding: 10px;
       border-radius: 10px;
-      border: none;
-      background: #020617;
+      border: 1px solid var(--border);
+      background: #0b0e11;
       color: var(--text);
-      font-size: 0.95rem;
+      font-size: 0.85rem;
     }
 
-    textarea { resize: vertical; min-height: 70px; }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-soft);
+    }
+
+    textarea { min-height: 70px; }
 
     .checklist label {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin: 8px 0;
+      font-size: 0.85rem;
       color: var(--text);
-      font-size: 0.95rem;
     }
 
     .checklist input {
       width: auto;
-      transform: scale(1.2);
+      accent-color: var(--accent);
+      transform: scale(1.1);
     }
 
     .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 12px;
     }
 
     button {
-      background: var(--accent);
-      color: #022c22;
+      background: linear-gradient(180deg, #f97316, #ea580c);
+      color: #1c1917;
       border: none;
       border-radius: 12px;
       padding: 14px;
-      font-size: 1rem;
-      font-weight: bold;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 1px;
       cursor: pointer;
-      transition: transform 0.1s ease, opacity 0.1s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
     }
 
-    button:hover { opacity: 0.9; transform: scale(0.98); }
+    button:hover {
+      filter: brightness(1.05);
+    }
 
     #relatorio {
       white-space: pre-wrap;
-      background: #020617;
+      background: #0b0e11;
       border-radius: 12px;
       padding: 16px;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    .footer {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      border: 1px dashed var(--accent-soft);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>POP Diário – Planejamento do Próximo Dia</h1>
+<div class="container">
 
-    <div class="card checklist">
-      <h2>1. Alinhamento</h2>
-      <label><input type="checkbox" id="pop01"> Li o POP 01</label>
-      <label><input type="checkbox" id="oracao"> Orei / alinhei intenção</label>
-      <label>Intenção do próximo dia
-        <input type="text" id="intencao" placeholder="Ex: constância e foco" />
-      </label>
-    </div>
+<h1>POP DIÁRIO – PLANEJAMENTO</h1>
 
-    <div class="card">
-      <h2>2. Registros do Dia</h2>
-      <div class="grid-2">
-        <label>Horas de estudo
-          <input type="number" step="0.1" id="horasEstudo" />
-        </label>
-        <label>Treino realizado
-          <input type="text" id="treino" placeholder="Ex: musculação / descanso" />
-        </label>
-        <label>Gastos do dia (R$)
-          <input type="number" step="0.01" id="gastos" />
-        </label>
-        <label>Alimentação
-          <select id="alimentacao">
-            <option>Boa</option>
-            <option>Média</option>
-            <option>Ruim</option>
-          </select>
-        </label>
-      </div>
-    </div>
+<div class="card">
+  <h2>DATA</h2>
+  <label>Data de referência (POP será para o dia seguinte)
+    <input type="date" id="dataBase" />
+  </label>
+</div>
 
-    <div class="card">
-      <h2>3. Planejamento do Próximo Dia</h2>
-      <label>O que vou estudar
-        <textarea id="estudar"></textarea>
-      </label>
-      <label>Horário do treino
-        <input type="text" id="horaTreino" />
-      </label>
-      <label>Horário de dormir / acordar
-        <input type="text" id="sono" placeholder="Ex: 22h / 5h" />
-      </label>
-    </div>
+<div class="card checklist">
+  <h2>ALINHAMENTO</h2>
+  <label><input type="checkbox" id="pop01"> Li o POP 01</label>
+  <label><input type="checkbox" id="oracao"> Orei / alinhei intenção</label>
+  <label>Frase do dia
+    <input type="text" id="frase" placeholder="Ex: constância vence motivação" />
+  </label>
+</div>
 
-    <div class="card">
-      <h2>4. Disciplina Invisível</h2>
-      <label>Limite de redes sociais
-        <input type="text" id="redes" placeholder="Ex: 30 min" />
-      </label>
-      <label>Preparação do ambiente
-        <textarea id="ambiente" placeholder="Ex: material separado, roupa do treino"></textarea>
-      </label>
-    </div>
-
-    <div class="card">
-      <h2>5. Fechamento</h2>
-      <label>O que acertei hoje
-        <textarea id="acertos"></textarea>
-      </label>
-      <label>Ponto de ajuste
-        <textarea id="ajustes"></textarea>
-      </label>
-    </div>
-
-    <button onclick="gerarRelatorio()">Gerar Relatório</button>
-
-    <div class="card">
-      <h2>Relatório Diário</h2>
-      <div id="relatorio"></div>
-      <br />
-      <button onclick="compartilharWhats()">Compartilhar no WhatsApp</button>
-    </div>
-
-    <div class="footer">POP Diário • Disciplina é continuidade</div>
+<div class="card">
+  <h2>HOJE – REGISTROS (DIA QUE ESTÁ SENDO ENCERRADO)</h2>
+  <div class="grid-2">
+    <label>Horas de estudo
+      <input type="number" step="0.1" id="horasEstudo" />
+    </label>
+    <label>Treino realizado
+      <input type="text" id="treino" />
+    </label>
+    <label>Gastos desnecessários (R$)
+      <input type="number" step="0.01" id="gastos" />
+    </label>
+    <label>Alimentação
+      <select id="alimentacao">
+        <option>Boa</option><option>Média</option><option>Ruim</option>
+      </select>
+    </label>
   </div>
+</div>
 
-  <script>
-    function gerarRelatorio() {
-      const r = `POP DIÁRIO – RELATÓRIO\n\n` +
-      `Alinhamento:\n` +
-      `- POP 01 lido: ${document.getElementById('pop01').checked ? 'Sim' : 'Não'}\n` +
-      `- Oração/intenção: ${document.getElementById('oracao').checked ? 'Sim' : 'Não'}\n` +
-      `- Intenção: ${document.getElementById('intencao').value}\n\n` +
-      `Registros do Dia:\n` +
-      `- Horas de estudo: ${document.getElementById('horasEstudo').value}\n` +
-      `- Treino: ${document.getElementById('treino').value}\n` +
-      `- Gastos: R$ ${document.getElementById('gastos').value}\n` +
-      `- Alimentação: ${document.getElementById('alimentacao').value}\n\n` +
-      `Planejamento Próximo Dia:\n` +
-      `- Estudo: ${document.getElementById('estudar').value}\n` +
-      `- Treino: ${document.getElementById('horaTreino').value}\n` +
-      `- Sono: ${document.getElementById('sono').value}\n\n` +
-      `Disciplina Invisível:\n` +
-      `- Redes sociais: ${document.getElementById('redes').value}\n` +
-      `- Ambiente: ${document.getElementById('ambiente').value}\n\n` +
-      `Fechamento:\n` +
-      `- Acertei: ${document.getElementById('acertos').value}\n` +
-      `- Ajustar: ${document.getElementById('ajustes').value}`;
+<div class="card">
+  <h2>AMANHÃ – PROGRAMAÇÃO (DIA SEGUINTE)</h2>
+  <label>O que vou estudar
+    <textarea id="estudar"></textarea>
+  </label>
+  <label>Treino (horário)
+    <input type="text" id="horaTreino" />
+  </label>
+  <label>Sono (dormir / acordar)
+    <input type="text" id="sono" />
+  </label>
+  <label>Limite de redes sociais
+    <input type="text" id="redes" />
+  </label>
+</div>
 
-      document.getElementById('relatorio').textContent = r;
-    }
+<div class="card">
+  <h2>FECHAMENTO</h2>
+  <label>O que acertei
+    <textarea id="acertos"></textarea>
+  </label>
+  <label>Ponto de ajuste
+    <textarea id="ajustes"></textarea>
+  </label>
+</div>
 
-    function compartilharWhats() {
-      const texto = encodeURIComponent(document.getElementById('relatorio').textContent);
-      window.open(`https://wa.me/?text=${texto}`, '_blank');
-    }
-  </script>
+<button onclick="gerarRelatorio()">GERAR TEXTO DO POP</button>
+
+<div class="card">
+  <h2>TEXTO PARA WHATSAPP</h2>
+  <div id="relatorio"></div><br>
+  <button onclick="compartilharWhats()">COMPARTILHAR</button>
+</div>
+
+</div>
+
+<script>
+  const hoje = new Date();
+  document.getElementById('dataBase').valueAsDate = hoje;
+
+  function formatarData(d) {
+    return d.toLocaleDateString('pt-BR');
+  }
+
+  function gerarRelatorio() {
+    const base = new Date(document.getElementById('dataBase').value);
+    const proximo = new Date(base);
+    proximo.setDate(base.getDate() + 1);
+
+    const texto = `*POP – ${formatarData(proximo)}*
+
+` +
+    `*MENSAGEM DO EU DE ${formatarData(base)} PARA O EU DE ${formatarData(proximo)}*
+
+` +
+    `*NÃO SE PERCA DO PROPÓSITO.* Ao ler esta mensagem, a primeira ação do dia é: *LER O POP 01*.
+
+` +
+    `*FRASE DO DIA:* ${document.getElementById('frase').value}
+
+` +
+    `*RELATO DO DIA ${formatarData(base)} (ENCERRAMENTO):*
+` +
+    `• Estudo realizado: ${document.getElementById('horasEstudo').value}h
+` +
+    `• Treino executado: ${document.getElementById('treino').value}
+` +
+    `• Gastos desnecessários: R$ ${document.getElementById('gastos').value}
+` +
+    `• Alimentação: ${document.getElementById('alimentacao').value}
+
+` +
+    `*ORDEM PARA O DIA ${formatarData(proximo)} (AO ACORDAR):*
+` +
+    `• Estudo programado: ${document.getElementById('estudar').value}
+` +
+    `• Treino: ${document.getElementById('horaTreino').value}
+` +
+    `• Sono: ${document.getElementById('sono').value}
+` +
+    `• Limite de redes sociais: ${document.getElementById('redes').value}
+
+` +
+    `*FECHAMENTO CONSCIENTE DO DIA ${formatarData(base)}:*
+` +
+    `✔ Acertos: ${document.getElementById('acertos').value}
+` +
+    `⚠ Ajustes necessários: ${document.getElementById('ajustes').value}
+
+` +
+    `*AO ACORDAR, EXECUTE. NÃO NEGOCIE.*`;
+
+    document.getElementById('relatorio').textContent = texto;
+  }
+
+  function compartilharWhats() {
+    const t = encodeURIComponent(document.getElementById('relatorio').textContent);
+    window.open(`https://wa.me/?text=${t}`, '_blank');
+  }
+</script>
 </body>
 </html>
