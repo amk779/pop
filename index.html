@@ -2,637 +2,286 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>POP COMMAND CENTER</title>
-  
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-  
+
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
-      --bg-dark: #09090b;
-      --bg-card: #18181b;
-      --primary: #f97316; /* Orange 500 */
-      --primary-glow: rgba(249, 115, 22, 0.4);
+      --bg-dark: #070709;
+      --primary: #f97316;
       --primary-dark: #c2410c;
       --text-main: #f4f4f5;
-      --text-muted: #a1a1aa;
+      --text-muted: #9ca3af;
       --border: #27272a;
-      --success: #10b981;
-      
-      --glass: rgba(24, 24, 27, 0.7);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      
+      --glass: rgba(18,18,20,.75);
       --radius: 16px;
-      --shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+      --shadow: 0 20px 45px -12px rgba(0,0,0,.65);
     }
 
-    * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      background-color: var(--bg-dark);
-      background-image: 
-        radial-gradient(circle at 50% 0%, #2a1b14 0%, transparent 60%),
-        linear-gradient(180deg, rgba(0,0,0,0) 0%, #09090b 100%);
+      background: linear-gradient(180deg, #050507 0%, #09090b 100%);
       font-family: 'Outfit', sans-serif;
       color: var(--text-main);
-      min-height: 100vh;
-      padding-bottom: 60px;
+      padding-bottom: 80px;
     }
-
-    /* Scrollbar Customizada */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-dark); }
-    ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
     .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 24px;
-      animation: fadeIn 0.6s ease-out;
+      max-width: 900px;
+      margin: auto;
+      padding: 28px 22px;
     }
 
-    /* Header */
     header {
       text-align: center;
       margin-bottom: 40px;
-      position: relative;
     }
 
     h1 {
       font-family: 'JetBrains Mono', monospace;
       color: var(--primary);
-      font-size: 1.8rem;
+      text-transform: uppercase;
       letter-spacing: -1px;
       margin: 0;
-      text-transform: uppercase;
-      text-shadow: 0 0 20px var(--primary-glow);
     }
 
     .subtitle {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      letter-spacing: 2px;
       margin-top: 8px;
+      font-size: .75rem;
+      letter-spacing: 2px;
+      color: var(--text-muted);
       text-transform: uppercase;
-      opacity: 0.8;
     }
 
-    /* Cards */
     .card {
       background: var(--glass);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 24px;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
       box-shadow: var(--shadow);
-      transition: transform 0.2s, border-color 0.2s;
-    }
-
-    .card:hover {
-      border-color: rgba(249, 115, 22, 0.3);
     }
 
     .card-header {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 10px;
+      margin-bottom: 18px;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 12px;
+      padding-bottom: 10px;
     }
 
-    .card-header i { color: var(--primary); font-size: 1.1rem; }
-    
+    .card-header i { color: var(--primary); }
+
     h2 {
       margin: 0;
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      color: var(--text-main);
+      font-size: 1rem;
+      letter-spacing: .6px;
     }
 
-    /* Inputs Grid System */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px;
     }
 
-    .field-group { position: relative; }
-
     label {
-      display: block;
-      font-size: 0.75rem;
-      font-weight: 600;
+      font-size: .7rem;
+      font-weight: 700;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 8px;
-      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      display: block;
     }
 
-    input, select, textarea {
+    input, textarea, select {
       width: 100%;
-      background: #0f0f11;
+      background: #0b0b0d;
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 16px;
+      border-radius: 10px;
+      padding: 12px;
       color: var(--text-main);
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
+      font-family: inherit;
     }
 
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px var(--primary-glow);
-      background: #151518;
-    }
+    textarea { min-height: 90px; resize: vertical; }
 
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-      line-height: 1.5;
-    }
-
-    /* Checkboxes Customizados */
     .checkbox-wrapper {
       display: flex;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
     .custom-check {
       display: flex;
       align-items: center;
+      gap: 8px;
       cursor: pointer;
-      background: rgba(255,255,255,0.03);
-      padding: 10px 16px;
-      border-radius: 8px;
+      padding: 10px 14px;
+      border-radius: 10px;
       border: 1px solid var(--border);
-      transition: all 0.2s;
+      background: rgba(255,255,255,.03);
     }
 
-    .custom-check:hover { background: rgba(255,255,255,0.06); }
-    
     .custom-check input { display: none; }
-    
+
     .checkmark {
-      width: 18px;
-      height: 18px;
-      border: 2px solid var(--text-muted);
+      width: 16px;
+      height: 16px;
       border-radius: 4px;
-      margin-right: 10px;
+      border: 2px solid var(--text-muted);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s;
+      font-size: 11px;
     }
 
     .custom-check input:checked + .checkmark {
       background: var(--primary);
       border-color: var(--primary);
-    }
-
-    .checkmark::after {
-      content: '✓';
       color: #000;
-      font-size: 12px;
-      font-weight: bold;
-      opacity: 0;
-      transform: scale(0);
-      transition: all 0.2s;
-    }
-
-    .custom-check input:checked + .checkmark::after {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* Botões */
-    .action-bar {
-      display: grid;
-      gap: 12px;
-      margin-top: 20px;
     }
 
     .btn {
       width: 100%;
-      padding: 16px;
+      padding: 15px;
+      border-radius: 14px;
       border: none;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 1px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      text-transform: uppercase;
       font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 10px;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      color: white;
-      box-shadow: 0 8px 20px -6px var(--primary-glow);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px -8px var(--primary-glow);
-    }
-
-    .btn-secondary {
-      background: #27272a;
-      color: white;
-    }
-    
-    .btn-secondary:hover { background: #3f3f46; }
-
-    .btn-whatsapp {
-      background: #25D366;
-      color: white;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-    }
-    
-    .btn-whatsapp:hover { background: #1ebc57; transform: translateY(-2px); }
-
-    /* Área de Relatório */
-    #output-card {
-      display: none; /* Escondido inicialmente */
-      border: 1px dashed var(--primary);
-      background: rgba(249, 115, 22, 0.03);
-    }
+    #output-card { display: none; }
 
     #relatorio {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      white-space: pre-wrap;
-      color: #d4d4d8;
-      line-height: 1.6;
       background: #000;
       padding: 16px;
-      border-radius: 8px;
-      border: 1px solid #333;
+      border-radius: 10px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      border: 1px solid var(--border);
     }
-
-    /* Toast Notification */
-    #toast {
-      visibility: hidden;
-      min-width: 250px;
-      background-color: var(--success);
-      color: #fff;
-      text-align: center;
-      border-radius: 50px;
-      padding: 16px;
-      position: fixed;
-      z-index: 100;
-      left: 50%;
-      bottom: 30px;
-      transform: translateX(-50%);
-      font-size: 1rem;
-      font-weight: 600;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    #toast.show {
-      visibility: visible;
-      animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    }
-
-    /* Animações */
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-    @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
-    
-    /* Footer */
-    .footer-actions {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
-    }
-    
-    .btn-small {
-        background: transparent;
-        border: 1px solid var(--border);
-        color: var(--text-muted);
-        padding: 8px 12px;
-        border-radius: 8px;
-        font-size: 0.75rem;
-        cursor: pointer;
-    }
-    .btn-small:hover { color: var(--text-main); border-color: var(--text-muted); }
-
   </style>
 </head>
 <body>
 
 <div class="container">
 
-  <header>
-    <h1>POP Diário</h1>
-    <div class="subtitle">Planejamento & Relatório Operacional</div>
-  </header>
+<header>
+  <h1>POP Diário</h1>
+  <div class="subtitle">Planejamento Operacional</div>
+</header>
 
-  <div class="card">
-    <div class="card-header">
-      <i class="fa-regular fa-calendar"></i>
-      <h2>Referência Temporal</h2>
-    </div>
-    <div class="grid">
-      <div class="field-group">
-        <label>Data Base (Hoje)</label>
-        <input type="date" id="dataBase" onchange="atualizarDataRelatorio()" />
-      </div>
-      <div class="field-group">
-        <label>Frase do Dia (Mentalidade)</label>
-        <input type="text" id="frase" placeholder="Ex: Disciplina é liberdade." oninput="salvarDados()" />
-      </div>
-    </div>
-  </div>
+<div class="card">
+  <div class="card-header"><i class="fa-regular fa-calendar"></i><h2>Data</h2></div>
+  <label>Data Base (hoje)</label>
+  <input type="date" id="dataBase">
+</div>
 
-  <div class="card">
-    <div class="card-header">
-      <i class="fa-solid fa-check-double"></i>
-      <h2>Alinhamento Inicial</h2>
-    </div>
-    <div class="checkbox-wrapper">
-      <label class="custom-check">
-        <input type="checkbox" id="pop01" onchange="salvarDados()">
-        <span class="checkmark"></span>
-        Leitura POP 01
-      </label>
-      <label class="custom-check">
-        <input type="checkbox" id="oracao" onchange="salvarDados()">
-        <span class="checkmark"></span>
-        Alinhamento / Oração
-      </label>
-    </div>
+<div class="card">
+  <div class="card-header"><i class="fa-solid fa-check-double"></i><h2>Rotina Fixa da Manhã</h2></div>
+  <div class="checkbox-wrapper">
+    <label class="custom-check"><input type="checkbox"><span class="checkmark">✓</span>500 ml de água</label>
+    <label class="custom-check"><input type="checkbox"><span class="checkmark">✓</span>Leitura POP 01</label>
+    <label class="custom-check"><input type="checkbox"><span class="checkmark">✓</span>Deuteronômio 8</label>
   </div>
+</div>
 
-  <div class="card">
-    <div class="card-header">
-      <i class="fa-solid fa-hourglass-end"></i>
-      <h2>Fechamento de Hoje</h2>
-    </div>
-    <div class="grid">
-      <div class="field-group">
-        <label><i class="fa-solid fa-book"></i> Horas de Estudo</label>
-        <input type="number" step="0.1" id="horasEstudo" placeholder="0.0" oninput="salvarDados()" />
-      </div>
-      <div class="field-group">
-        <label><i class="fa-solid fa-dumbbell"></i> Treino Realizado</label>
-        <input type="text" id="treino" placeholder="Ex: Musculação - Costas" oninput="salvarDados()" />
-      </div>
-      <div class="field-group">
-        <label><i class="fa-solid fa-money-bill"></i> Gastos Supérfluos (R$)</label>
-        <input type="number" step="0.01" id="gastos" placeholder="0.00" oninput="salvarDados()" />
-      </div>
-      <div class="field-group">
-        <label><i class="fa-solid fa-utensils"></i> Alimentação</label>
-        <select id="alimentacao" onchange="salvarDados()">
-          <option value="">Selecione...</option>
-          <option value="Excelente (100%)">Excelente (100%)</option>
-          <option value="Boa (Deslizes leves)">Boa (Deslizes leves)</option>
-          <option value="Ruim (Furo na dieta)">Ruim (Furo na dieta)</option>
-        </select>
-      </div>
-    </div>
+<div class="card">
+  <div class="card-header"><i class="fa-solid fa-hourglass-end"></i><h2>Hoje — Registro</h2></div>
+  <div class="grid">
+    <div><label>Horas de estudo</label><input id="horasEstudo"></div>
+    <div><label>Treino realizado</label><input id="treino"></div>
+    <div><label>Gastos desnecessários (R$)</label><input id="gastos"></div>
   </div>
+</div>
 
-  <div class="card">
-    <div class="card-header">
-      <i class="fa-solid fa-crosshairs"></i>
-      <h2>Missão de Amanhã</h2>
-    </div>
-    <div class="grid">
-      <div class="field-group">
-        <label>Foco de Estudo</label>
-        <textarea id="estudar" placeholder="Tópicos detalhados..." oninput="salvarDados()"></textarea>
-      </div>
-      <div class="field-group">
-        <label>Horário Treino</label>
-        <input type="text" id="horaTreino" placeholder="Ex: 06:00 AM" oninput="salvarDados()" />
-      </div>
-      <div class="field-group">
-        <label>Sono (Dormir / Acordar)</label>
-        <input type="text" id="sono" placeholder="Ex: 22h -> 05h" oninput="salvarDados()" />
-      </div>
-      <div class="field-group">
-        <label>Limite Redes Sociais</label>
-        <input type="text" id="redes" placeholder="Ex: 30 min total" oninput="salvarDados()" />
-      </div>
-    </div>
+<div class="card">
+  <div class="card-header"><i class="fa-solid fa-crosshairs"></i><h2>Amanhã — Programação</h2></div>
+  <div class="grid">
+    <div><label>Estudo</label><textarea id="estudar"></textarea></div>
+    <div><label>Treino</label><textarea id="treinoAmanha"></textarea></div>
+    <div><label>Observações / A resolver</label><textarea id="observacoes"></textarea></div>
   </div>
+</div>
 
-  <div class="card">
-    <div class="card-header">
-      <i class="fa-solid fa-scale-balanced"></i>
-      <h2>Análise Tática</h2>
-    </div>
-    <div class="grid">
-      <div class="field-group">
-        <label style="color: var(--success)">O que acertei (Vitórias)</label>
-        <textarea id="acertos" oninput="salvarDados()"></textarea>
-      </div>
-      <div class="field-group">
-        <label style="color: var(--primary)">Ponto de Ajuste (Correção)</label>
-        <textarea id="ajustes" oninput="salvarDados()"></textarea>
-      </div>
-    </div>
+<div class="card">
+  <div class="card-header"><i class="fa-solid fa-scale-balanced"></i><h2>Análise</h2></div>
+  <div class="grid">
+    <div><label>O que acertei</label><textarea id="acertos"></textarea></div>
+    <div><label>O que ajustar</label><textarea id="ajustes"></textarea></div>
   </div>
+</div>
 
-  <button class="btn btn-primary" onclick="gerarRelatorio()">
-    <i class="fa-solid fa-terminal"></i> GERAR RELATÓRIO
-  </button>
-  
-  <div class="footer-actions">
-      <button class="btn-small" onclick="limparDados()">Limpar tudo</button>
-      <span style="font-size: 0.7rem; color: #555;">v2.0 High Performance</span>
-  </div>
+<button class="btn btn-primary" onclick="gerarRelatorio()">Gerar POP do Dia Seguinte</button>
 
-  <div class="card" id="output-card" style="margin-top: 24px;">
-    <div class="card-header">
-      <i class="fa-brands fa-whatsapp"></i>
-      <h2>Preview da Mensagem</h2>
-    </div>
-    <div id="relatorio"></div>
-    
-    <div class="action-bar">
-      <button class="btn btn-secondary" onclick="copiarTexto()">
-        <i class="fa-regular fa-copy"></i> COPIAR TEXTO
-      </button>
-      <button class="btn btn-whatsapp" onclick="compartilharWhats()">
-        <i class="fa-brands fa-whatsapp"></i> ENVIAR NO WHATSAPP
-      </button>
-    </div>
-  </div>
+<div class="card" id="output-card">
+  <div class="card-header"><i class="fa-brands fa-whatsapp"></i><h2>Texto para WhatsApp</h2></div>
+  <div id="relatorio"></div>
+</div>
 
 </div>
 
-<div id="toast"><i class="fa-solid fa-check-circle"></i> Relatório Copiado!</div>
-
 <script>
-  // Inicialização
-  document.addEventListener('DOMContentLoaded', () => {
-    const hoje = new Date();
-    document.getElementById('dataBase').valueAsDate = hoje;
-    carregarDados();
-  });
+window.onload = () => {
+  document.getElementById('dataBase').valueAsDate = new Date();
+};
 
-  // Funções Utilitárias
-  function formatarData(d) {
-    return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
-  }
-  
-  function getVal(id) {
-    return document.getElementById(id).value || "---";
-  }
+function gerarRelatorio() {
+  const base = new Date(dataBase.value);
+  const amanha = new Date(base);
+  amanha.setDate(base.getDate() + 1);
 
-  function getCheck(id) {
-    return document.getElementById(id).checked ? "OK" : "PENDENTE";
-  }
+  const texto = 
+`*POP PARA ${amanha.toLocaleDateString()}*
 
-  // Lógica de Geração
-  function gerarRelatorio() {
-    const dataInput = document.getElementById('dataBase').value;
-    const base = new Date(dataInput + 'T00:00:00'); // Fix timezone issue
-    const proximo = new Date(base);
-    proximo.setDate(base.getDate() + 1);
+NÃO SE PERCA DO PROPÓSITO.
+LEIA O POP 01.
 
-    // Ícones para o texto
-    const iCheck = "✅";
-    const iWarn = "⚠";
-    const iFire = "🔥";
-    const iTarget = "🎯";
+📌 *ONTEM (${base.toLocaleDateString()})*
+• Estudo: ${horasEstudo.value}h
+• Treino: ${treino.value}
+• Gastos desnecessários: R$ ${gastos.value}
 
-    const texto = 
-`*POP DIÁRIO* | ${formatarData(base)} ➔ ${formatarData(proximo)}
+🎯 *HOJE*
+*ESTUDO*
+${estudar.value}
 
-💀 *MENTALIDADE DO DIA:*
-"${getVal('frase')}"
+*TREINO*
+${treinoAmanha.value}
 
-━━━━━━━━━━━━━━━━━━━
-🏁 *FECHAMENTO DO DIA ${formatarData(base)}*
-━━━━━━━━━━━━━━━━━━━
-📚 *Estudo:* ${getVal('horasEstudo')}h
-💪 *Treino:* ${getVal('treino')}
-💰 *Gastos:* R$ ${getVal('gastos')}
-🍎 *Dieta:* ${getVal('alimentacao')}
+*OBSERVAÇÕES / A RESOLVER*
+${observacoes.value}
 
-📥 *Checklist:*
-POP 01: ${getCheck('pop01')} | Alinhamento: ${getCheck('oracao')}
+⚖ *AJUSTES*
+${ajustes.value}
 
-━━━━━━━━━━━━━━━━━━━
-🛡 *MISSÃO PARA AMANHÃ (${formatarData(proximo)})*
-━━━━━━━━━━━━━━━━━━━
-🧠 *Estudo:* ${getVal('estudar')}
-⏰ *Treino:* ${getVal('horaTreino')}
-💤 *Sono:* ${getVal('sono')}
-📵 *Redes Sociais:* ${getVal('redes')}
+✔ *ACERTOS*
+${acertos.value}`;
 
-━━━━━━━━━━━━━━━━━━━
-⚖ *ANÁLISE TÁTICA*
-━━━━━━━━━━━━━━━━━━━
-${iCheck} *Vitórias:*
-${getVal('acertos')}
-
-${iWarn} *Ajustes:*
-${getVal('ajustes')}
-
-🚀 *EXECUÇÃO SUPERA MOTIVAÇÃO.*`;
-
-    const outputCard = document.getElementById('output-card');
-    const relatorioDiv = document.getElementById('relatorio');
-    
-    relatorioDiv.textContent = texto;
-    outputCard.style.display = 'block';
-    outputCard.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  // Funcionalidade do Toast e Cópia
-  function showToast() {
-    const toast = document.getElementById("toast");
-    toast.className = "show";
-    setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
-  }
-
-  async function copiarTexto() {
-    const texto = document.getElementById('relatorio').textContent;
-    try {
-      await navigator.clipboard.writeText(texto);
-      showToast();
-    } catch (err) {
-      alert('Erro ao copiar. Tente selecionar manualmente.');
-    }
-  }
-
-  function compartilharWhats() {
-    const texto = encodeURIComponent(document.getElementById('relatorio').textContent);
-    window.open(`https://wa.me/?text=${texto}`, '_blank');
-  }
-
-  // Persistência de Dados (LocalStorage)
-  const CAMPOS = ['frase', 'pop01', 'oracao', 'horasEstudo', 'treino', 'gastos', 'alimentacao', 'estudar', 'horaTreino', 'sono', 'redes', 'acertos', 'ajustes'];
-
-  function salvarDados() {
-    const dados = {};
-    CAMPOS.forEach(id => {
-      const el = document.getElementById(id);
-      if (el.type === 'checkbox') {
-        dados[id] = el.checked;
-      } else {
-        dados[id] = el.value;
-      }
-    });
-    localStorage.setItem('popDiarioData', JSON.stringify(dados));
-  }
-
-  function carregarDados() {
-    const dadosSalvos = localStorage.getItem('popDiarioData');
-    if (dadosSalvos) {
-      const dados = JSON.parse(dadosSalvos);
-      CAMPOS.forEach(id => {
-        const el = document.getElementById(id);
-        if (dados[id] !== undefined) {
-          if (el.type === 'checkbox') {
-            el.checked = dados[id];
-          } else {
-            el.value = dados[id];
-          }
-        }
-      });
-    }
-  }
-  
-  function limparDados() {
-      if(confirm("Deseja limpar todos os campos salvos?")) {
-          localStorage.removeItem('popDiarioData');
-          location.reload();
-      }
-  }
-
-  function atualizarDataRelatorio() {
-      // Apenas para garantir que se o usuário mudar a data, o relatório não fique desatualizado visualmente se já estiver aberto
-      const output = document.getElementById('output-card');
-      if (output.style.display === 'block') {
-          gerarRelatorio();
-      }
-  }
+  relatorio.textContent = texto;
+  document.getElementById('output-card').style.display = 'block';
+}
 </script>
 
 </body>
